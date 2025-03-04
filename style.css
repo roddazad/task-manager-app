@@ -1,7 +1,7 @@
 /* General Styling */
 body {
-    background-color: #d6dee6cf;
-    font-family: Arial, sans-serif;
+    background-color: #f8f9fa;
+    font-family: "Poppins", Arial, sans-serif;
 }
 
 /* Navbar Styling */
@@ -21,10 +21,11 @@ nav {
 .btn-primary {
     background-color: #575c61;
     border: none;
+    transition: background 0.3s ease-in-out;
 }
 .btn-primary:hover {
     background-color: #c4cbd5;
-    color:black
+    color: black;
 }
 
 /* Task List */
@@ -32,22 +33,73 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 10px 15px;
-    border-radius: 5px;
+    padding: 12px 15px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.list-group-item:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.list-group-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 18px; /* Slightly increased padding */
+    border-radius: 8px;
     margin-bottom: 10px;
     background: white;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.task-title {
-    font-weight: bold;
+/* Add spacing between elements */
+.list-group-item > * {
+    margin-right: 10px; /* Add spacing between elements */
 }
 
+/* Ensure last element (delete button) has no extra margin */
+.list-group-item > *:last-child {
+    margin-right: 0;
+}
+
+/* Due Date Styling */
+.task-due-date {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Increase gap between icon & date */
+    margin-left: 10px; /* Separate from category */
+}
+
+/* Buttons */
+.btn-sm {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+    margin-left: 5px; /* Space between buttons */
+}
+
+/* Task Title */
+.task-title {
+    font-weight: bold;
+    flex-grow: 1;
+    padding-right: 10px;
+}
+
+/* Task Category Styling */
 .task-category {
     font-size: 0.9rem;
     font-weight: 500;
-    padding: 3px 8px;
-    border-radius: 4px;
+    padding: 5px 10px;
+    border-radius: 5px;
     color: white;
 }
 
@@ -69,4 +121,49 @@ nav {
     text-decoration: line-through;
     color: gray;
     opacity: 0.7;
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Due Date Styling */
+.task-due-date {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #6c757d;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.task-due-date::before {
+    content: "📅"; /* Calendar icon */
+}
+
+/* Highlight Overdue Tasks */
+.overdue {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+/* Buttons */
+.btn-sm {
+    font-size: 0.85rem;
+    padding: 5px 8px;
+    border-radius: 5px;
+    transition: background 0.3s ease-in-out;
+}
+
+.btn-success {
+    background-color: #28a745;
+    border: none;
+}
+.btn-success:hover {
+    background-color: #218838;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    border: none;
+}
+.btn-danger:hover {
+    background-color: #c82333;
 }

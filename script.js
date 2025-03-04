@@ -7,6 +7,9 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskTitleInput = document.getElementById("taskTitle");
     const taskDescriptionInput = document.getElementById("taskDescription");
     const taskCategoryInput = document.getElementById("taskCategory");
+    // Hooks for filtering
+    const filterCategory = document.getElementById("filterCategory");
+    const filterStatus = document.getElementById("filterStatus");
 
     // Event listener for adding a new task
     const addTaskButton = document.getElementById("addTaskButton");

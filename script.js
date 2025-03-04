@@ -7,12 +7,13 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskTitleInput = document.getElementById("taskTitle");
     const taskDescriptionInput = document.getElementById("taskDescription");
     const taskCategoryInput = document.getElementById("taskCategory");
+    const taskDueDateInput = document.getElementById("taskDueDate"); // Due date input
     const filterCategory = document.getElementById("filterCategory");
     const filterStatus = document.getElementById("filterStatus");
+    const addTaskButton = document.getElementById("addTaskButton");
 
-    // Attach event listener to the form for submission
-    taskForm.addEventListener("submit", function (event) {
-        event.preventDefault();
+    // Attach event listener to the Add Task button
+    addTaskButton.addEventListener("click", function () {
         addTask();
     });
 
@@ -25,6 +26,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const taskTitle = taskTitleInput.value;
         const taskDescription = taskDescriptionInput.value;
         const taskCategory = taskCategoryInput.value;
+        const taskDueDate = taskDueDateInput.value; // Get the due date
 
         if (taskTitle === "") {
             alert("Please enter a task title.");
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
             title: taskTitle,
             description: taskDescription,
             category: taskCategory,
+            dueDate: taskDueDate || "No due date", // Store due date (default if empty)
             completed: false
         };
 
@@ -50,13 +53,20 @@ document.addEventListener("DOMContentLoaded", function () {
         displayTasks();
     }
 
-    // Function to display tasks (with filtering)
+    // Function to display tasks (with sorting and filtering)
     function displayTasks() {
         taskList.innerHTML = "";
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
         let selectedCategory = filterCategory.value;
         let selectedStatus = filterStatus.value;
+
+        // Sort tasks by due date (earliest first, empty dates at the end)
+        tasks.sort((a, b) => {
+            if (!a.dueDate) return 1;
+            if (!b.dueDate) return -1;
+            return new Date(a.dueDate) - new Date(b.dueDate);
+        });
 
         for (let i = 0; i < tasks.length; i++) {
             const task = tasks[i];
@@ -97,6 +107,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 categoryElement.classList.add("urgent");
             }
 
+            const dueDateElement = document.createElement("span");
+            dueDateElement.textContent = `Due: ${task.dueDate || "No due date"}`;
+            dueDateElement.classList.add("task-due-date");
+
             const completeButton = document.createElement("button");
             completeButton.textContent = "✔";
             completeButton.classList.add("btn", "btn-success", "btn-sm", "ms-2");
@@ -113,6 +127,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
             listItem.appendChild(titleElement);
             listItem.appendChild(categoryElement);
+            listItem.appendChild(dueDateElement);
             listItem.appendChild(completeButton);
             listItem.appendChild(deleteButton);
 

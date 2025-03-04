@@ -1,0 +1,72 @@
+/* General Styling */
+body {
+    background-color: #d6dee6cf;
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar Styling */
+nav {
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Task Input Form */
+.card {
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    background: rgb(28, 28, 33);
+    color: rgb(234, 238, 242);
+}
+
+/* Buttons */
+.btn-primary {
+    background-color: #575c61;
+    border: none;
+}
+.btn-primary:hover {
+    background-color: #c4cbd5;
+    color:black
+}
+
+/* Task List */
+.list-group-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background: white;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.task-title {
+    font-weight: bold;
+}
+
+.task-category {
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 3px 8px;
+    border-radius: 4px;
+    color: white;
+}
+
+/* Category Colors */
+.work {
+    background-color: #17a2b8;
+}
+
+.personal {
+    background-color: #28a745;
+}
+
+.urgent {
+    background-color: #dc3545;
+}
+
+/* Completed Task */
+.completed {
+    text-decoration: line-through;
+    color: gray;
+    opacity: 0.7;
+}

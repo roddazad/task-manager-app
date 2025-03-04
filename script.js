@@ -7,16 +7,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const taskTitleInput = document.getElementById("taskTitle");
     const taskDescriptionInput = document.getElementById("taskDescription");
     const taskCategoryInput = document.getElementById("taskCategory");
-    // Hooks for filtering
     const filterCategory = document.getElementById("filterCategory");
     const filterStatus = document.getElementById("filterStatus");
 
-    // Event listener for adding a new task
-    const addTaskButton = document.getElementById("addTaskButton");
-    addTaskButton.addEventListener("click", function (event) {
-        event.preventDefault(); // Prevent page reload
+    // Attach event listener to the form for submission
+    taskForm.addEventListener("submit", function (event) {
+        event.preventDefault();
         addTask();
     });
+
+    // Event listeners for filtering
+    filterCategory.addEventListener("change", displayTasks);
+    filterStatus.addEventListener("change", displayTasks);
 
     // Function to add a new task
     function addTask() {
@@ -48,13 +50,30 @@ document.addEventListener("DOMContentLoaded", function () {
         displayTasks();
     }
 
-    // Function to load and display tasks
+    // Function to display tasks (with filtering)
     function displayTasks() {
         taskList.innerHTML = "";
         let tasks = JSON.parse(localStorage.getItem("tasks")) || [];
 
+        let selectedCategory = filterCategory.value;
+        let selectedStatus = filterStatus.value;
+
         for (let i = 0; i < tasks.length; i++) {
             const task = tasks[i];
+
+            // Apply Category Filter
+            if (selectedCategory !== "all" && task.category !== selectedCategory) {
+                continue;
+            }
+
+            // Apply Status Filter
+            if (selectedStatus === "completed" && !task.completed) {
+                continue;
+            } else if (selectedStatus === "pending" && task.completed) {
+                continue;
+            }
+
+            // Create task item
             const listItem = document.createElement("div");
             listItem.classList.add("list-group-item");
 

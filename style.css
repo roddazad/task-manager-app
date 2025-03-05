@@ -121,10 +121,6 @@ body.dark-mode {
 }
 
 
-.fade-out {
-    animation: fadeOut 0.3s ease-in-out forwards;
-}
-
 /* Buttons */
 .btn-sm {
     font-size: 0.85rem;
